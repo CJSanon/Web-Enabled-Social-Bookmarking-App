@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/thrillioweb.iml" filepath="$PROJECT_DIR$/thrillioweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/thrillioweb.iml" filepath="$PROJECT_DIR$/.idea/thrillioweb.iml" />
     </modules>
   </component>
 </project>

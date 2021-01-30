@@ -7,19 +7,19 @@
     <title>thrill.io</title>
 </head>
 <body style="font-family:Arial;font-size:20px;">
-<div style="height:65px;align: center;background: #DB5227;font-family: Arial;color: white;">
-<br><b>
-    <a href="" style="font-family:garamond;font-size:34px;margin:0 0 0 10px;color:white;text-decoration: none;">thrill.io</a></b>
-<div style="height:25px;background: #DB5227;font-family: Arial;color: white;">
-    <b>
-        <a href="<%=request.getContextPath()%>/bookmark" style="font-size:16px;color:white;margin-left:1150px;text-decoration:none;">Browse</a>
-    </b>
-</div>
-</div>
-<br><br>
+    <div style="height:65px;align: center;background: #DB5227;font-family: Arial;color: white;">
+    <br><b>
+        <a href="" style="font-family:garamond;font-size:34px;margin:0 0 0 10px;color:white;text-decoration: none;">thrill.io</a></b>
+        <div style="height:25px;background: #DB5227;font-family: Arial;color: white;">
+            <b>
+                <a href="<%=request.getContextPath()%>/bookmark" style="font-size:16px;color:white;margin-left:1150px;text-decoration:none;">Browse</a>
+            </b>
+        </div>
+    </div>
+    <br><br>
 
-<div style="font-size: 24px;color: #333333;padding: 15px 0px 0px;border-bottom: #333333 1px solid;clear: both;">Saved Items</div>
-<br><br>
+    <div style="font-size: 24px;color: #333333;padding: 15px 0px 0px;border-bottom: #333333 1px solid;clear: both;">Saved Items</div>
+    <br><br>
 
 <c:choose>
     <c:when test="${!empty(books)}">

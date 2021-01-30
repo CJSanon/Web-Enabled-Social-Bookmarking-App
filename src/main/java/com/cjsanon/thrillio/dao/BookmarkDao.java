@@ -21,7 +21,7 @@ public class BookmarkDao {
     //Typically has SQL here
     public void saveUserBookmark(UserBookmark userBookmark) {
         //DataStore.add(userBookmark);
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
              Statement stmt = conn.createStatement()) {
             if (userBookmark.getBookmark() instanceof Book) {
                 saveUserBook(userBookmark, stmt);
@@ -87,7 +87,7 @@ public class BookmarkDao {
             tableToUpdate = "WebLink";
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
              Statement stmt = conn.createStatement()){
             String query = "update " + tableToUpdate + " set kid_friendly_status = " + kidFriendlyStatus + ", kid_friendly_marked_by = " + userId + " where id = " + bookmark.getId();
             System.out.println("query (updateKidFriendlyStatus): " + query);
@@ -106,7 +106,7 @@ public class BookmarkDao {
             tableToUpdate = "WebLink";
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?&useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
              Statement stmt = conn.createStatement()){
             String query = "update " + tableToUpdate + " set shared_by = " + userId + " where id = " + bookmark.getId();
             System.out.println("query (updateKidFriendlyStatus): " + query);
@@ -116,13 +116,11 @@ public class BookmarkDao {
         }
     }
 
-
     public Collection<Bookmark> getBooks(boolean isBookmarked, long userId) {
-
         Collection<Bookmark> result = new ArrayList<>();
 
         try {
-            Class.forName("com.mysql.jdbc.Driver"); //loads driver, registered with JDBC API
+            Class.forName("com.mysql.jdbc.Driver");
             //new com.mysql.jdbc.Driver();
             // OR
             //System.setProperty("jdbc.drivers", "com.mysql.jdbc.Driver");
@@ -133,10 +131,10 @@ public class BookmarkDao {
             e.printStackTrace();
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
              Statement stmt = conn.createStatement()) {
 
-            String query = "";
+            String query;
             if (!isBookmarked) {
                 query = "Select b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
                         "amazon_rating from Book b, Author a, Book_Author ba where b.id = ba.book_id and ba.author_id = a.id and " +
@@ -162,6 +160,7 @@ public class BookmarkDao {
                 BookGenre genre = BookGenre.values()[genre_id];
                 double amazonRating = rs.getDouble("amazon_rating");
 
+                System.out.println("In Dao layer: BookmarkDao GetBooks method");
                 System.out.println("id: " + id + ", title: " + title + ", publication year: " + publicationYear + ", authors: " + String.join(", ", authors) + ", genre: " + genre + ", amazonRating: " + amazonRating);
 
                 Bookmark bookmark = BookmarkManager.getInstance().createBook(id, title, imageUrl, publicationYear, null, authors, genre, amazonRating/*, values[7]*/);
@@ -170,43 +169,7 @@ public class BookmarkDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return result;
-    }
-
-    public User getUser(long userId) {
-        User user = null;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "root");
-             Statement stmt = conn.createStatement();) {
-            String query = "Select * from User where id = " + userId;
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                long id = rs.getLong("id");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                int gender_id = rs.getInt("gender_id");
-                Gender gender = Gender.values()[gender_id];
-                int user_type_id = rs.getInt("user_type_id");
-                UserType userType = UserType.values()[user_type_id];
-
-                user = UserManager.getInstance().createUser(id, email, password, firstName, lastName, gender, userType);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return user;
-
     }
 
     public Bookmark getBook(long bookId) {
@@ -218,8 +181,8 @@ public class BookmarkDao {
             e.printStackTrace();
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "root");
-             Statement stmt = conn.createStatement();) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
+             Statement stmt = conn.createStatement()) {
             String query = "Select b.id, title, image_url, publication_year, p.name, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, amazon_rating, created_date"
                     + " from Book b, Publisher p, Author a, Book_Author ba "
                     + "where b.id = " + bookId + " and b.publisher_id = p.id and b.id = ba.book_id and ba.author_id = a.id group by b.id";

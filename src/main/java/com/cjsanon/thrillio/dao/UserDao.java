@@ -21,8 +21,14 @@ public class UserDao {
     public User getUser(long userId) {
         User user = null;
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "root");
-             Statement stmt = conn.createStatement();) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
+             Statement stmt = conn.createStatement()) {
             String query = "Select * from User where id = " + userId;
             ResultSet rs = stmt.executeQuery(query);
 
@@ -47,6 +53,8 @@ public class UserDao {
 
     }
 
+
+
     public long authenticate(String email, String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,8 +62,8 @@ public class UserDao {
             e.printStackTrace();
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "root");
-             Statement stmt = conn.createStatement();) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
+             Statement stmt = conn.createStatement()) {
             String query = "Select id from User where email = '" + email + "' and password = '" + password + "'";
             System.out.println("query: " + query);
             ResultSet rs = stmt.executeQuery(query);
@@ -66,7 +74,6 @@ public class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return -1;
     }
 }
