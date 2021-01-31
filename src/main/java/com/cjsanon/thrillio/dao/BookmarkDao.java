@@ -89,7 +89,7 @@ public class BookmarkDao {
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
              Statement stmt = conn.createStatement()){
-            String query = "update " + tableToUpdate + " set kid_friendly_status = " + kidFriendlyStatus + ", kid_friendly_marked_by = " + userId + " where id = " + bookmark.getId();
+            String query = "UPDATE " + tableToUpdate + " SET kid_friendly_status = " + kidFriendlyStatus + ", kid_friendly_marked_by = " + userId + " WHERE id = " + bookmark.getId();
             System.out.println("query (updateKidFriendlyStatus): " + query);
             stmt.executeUpdate(query);
 
@@ -108,7 +108,7 @@ public class BookmarkDao {
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?&useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S" );
              Statement stmt = conn.createStatement()){
-            String query = "update " + tableToUpdate + " set shared_by = " + userId + " where id = " + bookmark.getId();
+            String query = "UPDATE " + tableToUpdate + " SET shared_by = " + userId + " WHERE id = " + bookmark.getId();
             System.out.println("query (updateKidFriendlyStatus): " + query);
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -134,12 +134,12 @@ public class BookmarkDao {
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=FALSE", "root", "yUwsy7M%#WR2RjMvr&Q5543Y3D3S");
              Statement stmt = conn.createStatement()) {
 
-            String query;
+            String query = "";
             if (!isBookmarked) {
-                query = "Select b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
-                        "amazon_rating from Book b, Author a, Book_Author ba where b.id = ba.book_id and ba.author_id = a.id and " +
-                        "b.id NOT IN (select ub.book_id from User u, User_Book ub where u.id = " + userId +
-                        " and u.id = ub.user_id) group by b.id";
+                query = "SELECT b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
+                        "amazon_rating FROM Book b, Author a, Book_Author ba WHERE b.id = ba.book_id AND ba.author_id = a.id AND " +
+                        "b.id NOT IN (SELECT ub.book_id from User u, User_Book ub WHERE u.id = " + userId +
+                        " AND u.id = ub.user_id) GROUP BY b.id";
             } else {
 				query = "Select b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
 						"amazon_rating from Book b, Author a, Book_Author ba where b.id = ba.book_id and ba.author_id = a.id and " +

@@ -4,6 +4,7 @@ import com.cjsanon.thrillio.constants.Gender;
 import com.cjsanon.thrillio.constants.UserType;
 import com.cjsanon.thrillio.dao.UserDao;
 import com.cjsanon.thrillio.entities.User;
+import com.cjsanon.thrillio.util.StringUtil;
 
 import java.util.List;
 
@@ -36,5 +37,9 @@ public class UserManager {
 
     public User getUser(long userId) {
         return dao.getUser(userId);
+    }
+
+    public long authenticate(String email, String password) {
+        return dao.authenticate(email, StringUtil.encodePassword(password));
     }
 }
