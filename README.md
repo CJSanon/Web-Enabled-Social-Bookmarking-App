@@ -3,7 +3,7 @@
 A bookmarking web application for bookmarking your favorite books, movies, and online articles. This is an extremely new and entirely original idea. The goal is to grow this project into a social bookmarking application with a large database of media types.
 
 
-<img src="https://media.giphy.com/media/IbnMAqDLQCVrlO4LRn/giphy.gif" width="650">
+<img src="https://media.giphy.com/media/YvWKwXOHMi5O89i2xj/giphy.gif" width="650">
 
 
 ## Background
