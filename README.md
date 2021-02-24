@@ -1,6 +1,6 @@
 # **BookmarkMe - A Media Bookmarking Application**
 
-One Paragraph of project description goes here
+A bookmarking web application for bookmarking your favorite books, movies, and online articles. This is an extremely new and entirely original idea. The goal is to grow this project into a social bookmarking application with a large database of media types.
 
 ## Getting Started
 
