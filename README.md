@@ -2,6 +2,10 @@
 
 A bookmarking web application for bookmarking your favorite books, movies, and online articles. This is an extremely new and entirely original idea. The goal is to grow this project into a social bookmarking application with a large database of media types.
 
+## Background
+
+Initially this project was simply the result of taking a months-long Java course on Udemy; it is a great project for practicing OOP, learning how to use MVC architecture, and exploring Java SE and EE. MY plan now is to transform it into a shareable tracker of my media consumption.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
