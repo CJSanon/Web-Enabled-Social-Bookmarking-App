@@ -3,6 +3,8 @@
 ## Table of Contents
 - Project Description
 - Project Background
+- Technologies
+- Getting Started
 
 
 
