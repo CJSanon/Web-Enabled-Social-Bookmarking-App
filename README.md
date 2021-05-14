@@ -9,7 +9,7 @@
 
 
 ## Project Description
-A bookmarking web application for bookmarking your favorite books, movies, and online articles. The goal is to grow this project into a social bookmarking application with a large database of media types so I can keep track of my media consumption.
+A bookmarking web application for bookmarking your favorite books, movies, and online articles. The goal is to grow this project into a social bookmarking application with a large database of media types so I can keep track of my media consumption. Current iteration has bookmarking functionality.
 
 
 <img src="https://media.giphy.com/media/YvWKwXOHMi5O89i2xj/giphy.gif" width="650">
